@@ -1,0 +1,27 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Biblioteca IESB{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'biblioteca/style.css' %}">
+</head>
+<body>
+  <header><nav aria-label="Navegação principal">
+    <a class="brand" href="{% url 'biblioteca:lista_livros' %}">Biblioteca <span>IESB</span></a>
+    <div class="links"><a href="{% url 'biblioteca:lista_livros' %}">Catálogo</a>
+    {% if user.is_staff and user.is_active %}
+      <a href="{% url 'biblioteca:meus_emprestimos' %}">Empréstimos</a>
+      <a href="{% url 'admin:index' %}">Admin</a>
+      <form method="post" action="{% url 'admin:logout' %}">{% csrf_token %}<button class="secondary" type="submit">Sair</button></form>
+    {% else %}<a href="{% url 'admin:login' %}?next=/">Entrar como equipe</a>{% endif %}
+    </div>
+  </nav></header>
+  <main>
+    {% for message in messages %}<div role="status" class="message {{ message.tags }}">{{ message }}</div>{% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>Projeto 2 · Construção de Backend · Django ORM</footer>
+</body>
+</html>

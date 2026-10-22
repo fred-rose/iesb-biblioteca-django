@@ -1,0 +1,23 @@
+{% extends 'biblioteca/base.html' %}
+{% block title %}Empréstimos · Biblioteca IESB{% endblock %}
+{% block content %}
+<p class="eyebrow">Circulação do acervo</p><h1>{% if membro %}Empréstimos de {{ membro.nome }}{% else %}Empréstimos{% endif %}</h1>
+<p class="intro">Acompanhe os prazos e registre as devoluções. O atraso é calculado pela data local.</p>
+<nav class="filters" aria-label="Filtrar por membro">
+  <a href="{% url 'biblioteca:meus_emprestimos' %}" {% if not membro %}aria-current="page"{% endif %}>Todos</a>
+  {% for item in membros %}<a href="{% url 'biblioteca:meus_emprestimos_membro' item.pk %}" {% if membro.pk == item.pk %}aria-current="page"{% endif %}>{{ item.nome }}</a>{% endfor %}
+</nav>
+<div class="table-scroll"><table>
+  <caption>Histórico de empréstimos{% if membro %} de {{ membro.nome }}{% endif %}</caption>
+  <thead><tr><th scope="col">Livro / membro</th><th scope="col">Empréstimo</th><th scope="col">Prazo</th><th scope="col">Situação</th><th scope="col">Devolução</th></tr></thead>
+  <tbody>{% for emprestimo in emprestimos %}
+    <tr {% if emprestimo.esta_atrasado %}class="late"{% endif %}>
+      <td><strong>{{ emprestimo.livro.titulo }}</strong><br><span class="muted">{{ emprestimo.membro.nome }}</span></td>
+      <td>{{ emprestimo.data_emprestimo|date:"d/m/Y" }}</td><td>{{ emprestimo.data_prevista_devolucao|date:"d/m/Y" }}</td>
+      <td>{% if emprestimo.data_devolucao %}<span class="badge">Devolvido</span>{% elif emprestimo.esta_atrasado %}<span class="badge overdue">Atrasado</span>{% else %}<span class="badge active">Ativo</span>{% endif %}</td>
+      <td>{% if emprestimo.data_devolucao %}{{ emprestimo.data_devolucao|date:"d/m/Y" }}{% else %}
+      <form method="post" action="{% url 'biblioteca:devolver_livro' emprestimo.pk %}">{% csrf_token %}<button type="submit">Devolver</button></form>{% endif %}</td>
+    </tr>
+  {% empty %}<tr><td colspan="5" class="empty">Nenhum empréstimo encontrado.</td></tr>{% endfor %}</tbody>
+</table></div>
+{% endblock %}

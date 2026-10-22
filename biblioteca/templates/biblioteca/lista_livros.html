@@ -1,0 +1,33 @@
+{% extends 'biblioteca/base.html' %}
+{% block content %}
+<p class="eyebrow">Acervo da biblioteca</p>
+<h1>Uma nova leitura começa aqui.</h1>
+<p class="intro">Consulte os títulos e a disponibilidade. Os empréstimos têm prazo de 14 dias.</p>
+<section class="grid" aria-label="Livros">
+{% for livro in livros %}
+  <article class="card">
+    <span class="badge {% if not livro.copias_disponiveis %}unavailable{% endif %}">{% if livro.copias_disponiveis %}Disponível{% else %}Sem cópias{% endif %}</span>
+    <h2>{{ livro.titulo }}</h2><p>{{ livro.autor.nome }}</p>
+    <p class="muted">ISBN {{ livro.isbn }}</p>
+    <p><strong>{{ livro.copias_disponiveis }}</strong> de {{ livro.copias_totais }} cópias disponíveis</p>
+    {% if form %}
+      {% if livro.copias_disponiveis %}
+      <form method="post" action="{% url 'biblioteca:emprestar_livro' livro.pk %}">
+        {% csrf_token %}
+        <label for="membro-{{ livro.pk }}">Emprestar para</label>
+        <select name="membro" id="membro-{{ livro.pk }}" required>
+          {% for value, label in form.fields.membro.choices %}<option value="{{ value }}">{{ label }}</option>{% endfor %}
+        </select>
+        <button type="submit">Registrar empréstimo</button>
+      </form>
+      {% else %}<p class="muted">Aguarde uma devolução.</p>{% endif %}
+    {% endif %}
+  </article>
+{% empty %}<p class="empty">Nenhum livro cadastrado. A equipe pode adicionar títulos no Admin.</p>{% endfor %}
+</section>
+{% if ranking %}
+<section class="ranking"><p class="eyebrow">Consultas com ORM</p><h2>Mais emprestados</h2>
+<ol>{% for livro in ranking %}<li>{{ livro.titulo }} <span>{{ livro.total_emprestimos }} empréstimo{{ livro.total_emprestimos|pluralize:"s" }}</span></li>{% endfor %}</ol>
+</section>
+{% endif %}
+{% endblock %}

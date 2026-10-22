@@ -1,0 +1,135 @@
+Validacao real: 2026-10-22T10:09:48.542896-03:00
+Python: 3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]
+
+COMMAND: python manage.py check
+System check identified no issues (0 silenced).
+EXIT CODE: 0
+
+COMMAND: python manage.py makemigrations --check --dry-run
+No changes detected
+EXIT CODE: 0
+
+COMMAND: python manage.py test --verbosity 2
+Found 41 test(s).
+Creating test database for alias 'default' ('C:\Users\patai\OneDrive\Documentos\IESB\Construção de Backend\projeto-pratico-2\biblioteca_projeto\test_biblioteca.sqlite3')...
+
+Destroying old test database for alias 'default' ('C:\Users\patai\OneDrive\Documentos\IESB\Construção de Backend\projeto-pratico-2\biblioteca_projeto\test_biblioteca.sqlite3')...
+
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: admin, auth, biblioteca, contenttypes, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying biblioteca.0001_initial... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+test_admin_bloqueia_criacao_edicao_e_exclusao_emprestimo (biblioteca.tests.AdminTest.test_admin_bloqueia_criacao_edicao_e_exclusao_emprestimo) ... ok
+test_admin_bloqueia_livro_novo_com_estoque_incompleto (biblioteca.tests.AdminTest.test_admin_bloqueia_livro_novo_com_estoque_incompleto) ... ok
+test_admin_bloqueia_manipulacao_estoque (biblioteca.tests.AdminTest.test_admin_bloqueia_manipulacao_estoque) ... ok
+test_admin_listagens_e_inline_funcionam (biblioteca.tests.AdminTest.test_admin_listagens_e_inline_funcionam) ... ok
+test_atraso_usa_data_local_e_ignora_devolvidos (biblioteca.tests.CirculacaoTest.test_atraso_usa_data_local_e_ignora_devolvidos) ... ok
+test_banco_bloqueia_status_incoerente (biblioteca.tests.CirculacaoTest.test_banco_bloqueia_status_incoerente) ... ok
+test_bloqueio_estoque_zero (biblioteca.tests.CirculacaoTest.test_bloqueio_estoque_zero) ... ok
+test_devolucao_atualiza_data_status_e_estoque (biblioteca.tests.CirculacaoTest.test_devolucao_atualiza_data_status_e_estoque) ... ok
+test_devolucao_duplicada (biblioteca.tests.CirculacaoTest.test_devolucao_duplicada) ... ok
+test_devolucao_inexistente (biblioteca.tests.CirculacaoTest.test_devolucao_inexistente) ... ok
+test_devolve_status_atrasado_tambem (biblioteca.tests.CirculacaoTest.test_devolve_status_atrasado_tambem) ... ok
+test_emprestimo_ativo_com_estoque_e_prazo (biblioteca.tests.CirculacaoTest.test_emprestimo_ativo_com_estoque_e_prazo) ... ok
+test_falha_estoque_reverte_devolucao (biblioteca.tests.CirculacaoTest.test_falha_estoque_reverte_devolucao) ... ok
+test_falha_na_criacao_reverte_estoque (biblioteca.tests.CirculacaoTest.test_falha_na_criacao_reverte_estoque) ... ok
+test_livro_inexistente (biblioteca.tests.CirculacaoTest.test_livro_inexistente) ... ok
+test_membro_inexistente_reverte_estoque (biblioteca.tests.CirculacaoTest.test_membro_inexistente_reverte_estoque) ... ok
+test_ranking_count_inclui_devolvidos_e_livros_sem_emprestimos (biblioteca.tests.CirculacaoTest.test_ranking_count_inclui_devolvidos_e_livros_sem_emprestimos) ... ok
+test_banco_ocupado_exibe_mensagem_sem_sucesso (biblioteca.tests.InterfaceTest.test_banco_ocupado_exibe_mensagem_sem_sucesso) ... ok
+test_catalogo_autenticado_renderiza_formulario (biblioteca.tests.InterfaceTest.test_catalogo_autenticado_renderiza_formulario) ... ok
+test_catalogo_publico_e_sem_dados_de_membros (biblioteca.tests.InterfaceTest.test_catalogo_publico_e_sem_dados_de_membros) ... ok
+test_csrf_obrigatorio_nas_duas_operacoes (biblioteca.tests.InterfaceTest.test_csrf_obrigatorio_nas_duas_operacoes) ... ok
+test_devolucao_duplicada_exibe_mensagem (biblioteca.tests.InterfaceTest.test_devolucao_duplicada_exibe_mensagem) ... ok
+test_estados_vazios (biblioteca.tests.InterfaceTest.test_estados_vazios) ... ok
+test_estoque_zero_exibe_mensagem (biblioteca.tests.InterfaceTest.test_estoque_zero_exibe_mensagem) ... ok
+test_fluxo_post_com_csrf_real (biblioteca.tests.InterfaceTest.test_fluxo_post_com_csrf_real) ... ok
+test_get_nao_modifica_dados (biblioteca.tests.InterfaceTest.test_get_nao_modifica_dados) ... ok
+test_listagem_filtra_membro_e_exibe_atraso (biblioteca.tests.InterfaceTest.test_listagem_filtra_membro_e_exibe_atraso) ... ok
+test_membro_invalido_exibe_mensagem (biblioteca.tests.InterfaceTest.test_membro_invalido_exibe_mensagem) ... ok
+test_post_anonimo_e_usuario_sem_permissao_bloqueados (biblioteca.tests.InterfaceTest.test_post_anonimo_e_usuario_sem_permissao_bloqueados) ... ok
+test_banco_bloqueia_disponiveis_maior_que_total (biblioteca.tests.ModelosTest.test_banco_bloqueia_disponiveis_maior_que_total) ... ok
+test_banco_bloqueia_estoque_negativo (biblioteca.tests.ModelosTest.test_banco_bloqueia_estoque_negativo) ... ok
+test_cadastro_e_representacoes (biblioteca.tests.ModelosTest.test_cadastro_e_representacoes) ... ok
+test_email_unico (biblioteca.tests.ModelosTest.test_email_unico) ... ok
+test_historico_protegido_contra_exclusao_em_cascata (biblioteca.tests.ModelosTest.test_historico_protegido_contra_exclusao_em_cascata) ... ok
+test_isbn_unico (biblioteca.tests.ModelosTest.test_isbn_unico) ... ok
+test_relacionamento_autor_livros (biblioteca.tests.ModelosTest.test_relacionamento_autor_livros) ... ok
+test_validacao_disponiveis_maior_que_total (biblioteca.tests.ModelosTest.test_validacao_disponiveis_maior_que_total) ... ok
+test_validacao_estoque_considera_pendentes (biblioteca.tests.ModelosTest.test_validacao_estoque_considera_pendentes) ... ok
+test_comando_idempotente_preserva_estoque (biblioteca.tests.PopularTest.test_comando_idempotente_preserva_estoque) ... ok
+test_dois_emprestimos_concorrentes_nao_excedem_estoque (biblioteca.tests.ConcorrenciaSQLiteTest.test_dois_emprestimos_concorrentes_nao_excedem_estoque) ... ok
+test_duas_devolucoes_concorrentes_incrementam_so_uma_vez (biblioteca.tests.ConcorrenciaSQLiteTest.test_duas_devolucoes_concorrentes_incrementam_so_uma_vez) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 0.895s
+
+OK
+Destroying test database for alias 'default' ('C:\Users\patai\OneDrive\Documentos\IESB\Construção de Backend\projeto-pratico-2\biblioteca_projeto\test_biblioteca.sqlite3')...
+EXIT CODE: 0
+
+COMMAND: python manage.py migrate --check
+
+EXIT CODE: 0
+
+COMMAND: python manage.py showmigrations
+admin
+ [X] 0001_initial
+ [X] 0002_logentry_remove_auto_add
+ [X] 0003_logentry_add_action_flag_choices
+auth
+ [X] 0001_initial
+ [X] 0002_alter_permission_name_max_length
+ [X] 0003_alter_user_email_max_length
+ [X] 0004_alter_user_username_opts
+ [X] 0005_alter_user_last_login_null
+ [X] 0006_require_contenttypes_0002
+ [X] 0007_alter_validators_add_error_messages
+ [X] 0008_alter_user_username_max_length
+ [X] 0009_alter_user_last_name_max_length
+ [X] 0010_alter_group_name_max_length
+ [X] 0011_update_proxy_permissions
+ [X] 0012_alter_user_first_name_max_length
+biblioteca
+ [X] 0001_initial
+contenttypes
+ [X] 0001_initial
+ [X] 0002_remove_content_type_name
+sessions
+ [X] 0001_initial
+EXIT CODE: 0
+
+COMMAND: python -m pip check
+No broken requirements found.
+EXIT CODE: 0
+
+COMMAND: python manage.py shell -c from biblioteca.models import Autor, Livro, Membro, Emprestimo; from biblioteca.services import ranking_livros; print('Contagens (autores, livros, membros, emprestimos):', Autor.objects.count(), Livro.objects.count(), Membro.objects.count(), Emprestimo.objects.count()); print('Ranking:', list(ranking_livros().values('titulo', 'total_emprestimos'))); print('Estoque (total, disponiveis):', sum(Livro.objects.values_list('copias_totais', flat=True)), sum(Livro.objects.values_list('copias_disponiveis', flat=True)))
+16 objects imported automatically (use -v 2 for details).
+
+Contagens (autores, livros, membros, emprestimos): 3 5 3 0
+Ranking: [{'titulo': 'A Hora da Estrela', 'total_emprestimos': 0}, {'titulo': 'Dom Casmurro', 'total_emprestimos': 0}, {'titulo': 'Ensaio sobre a Cegueira', 'total_emprestimos': 0}, {'titulo': 'Memórias Póstumas de Brás Cubas', 'total_emprestimos': 0}, {'titulo': 'Perto do Coração Selvagem', 'total_emprestimos': 0}]
+Estoque (total, disponiveis): 15 15
+EXIT CODE: 0
